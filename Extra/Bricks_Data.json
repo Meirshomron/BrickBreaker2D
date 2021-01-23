@@ -1,0 +1,13 @@
+{
+  "bricks_type_map": {
+    "0": {
+      "name": "Brick_Basic",
+      "hits_to_destroy": 1
+    },
+    "1": {
+      "name": "Brick_Yellow",
+      "hits_to_destroy": 2
+    }
+  },
+  "empty_brick_type" : -1
+}

@@ -1,0 +1,13 @@
+{
+  "powerups_type_map": {
+    "powerup_rocket": {
+      "handler": "ball",
+      "timeout": 10
+    },
+    "paddle_expand": {
+      "handler": "paddle",
+      "timeout": 10,
+      "scale_amount": 2
+    }
+  }
+}

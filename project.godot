@@ -1,0 +1,42 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Resource",
+"class": "Level_Resource",
+"language": "GDScript",
+"path": "res://Scripts/Level_Class.gd"
+} ]
+_global_script_class_icons={
+"Level_Resource": ""
+}
+
+[application]
+
+config/name="BrickBreaker2D"
+run/main_scene="res://Scenes/Main.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+SignalsManager="*res://Scripts/Signals_Manager.gd"
+LevelsManager="*res://Scripts/Levels_Manager.gd"
+BricksManager="*res://Scripts/Bricks_Manager.gd"
+PowerupsManager="*res://Scripts/Powerups_Manager.gd"
+
+[display]
+
+window/size/resizable=false
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

@@ -77,7 +77,7 @@ func on_powerup_collected(powerup_id, powerup_data):
 	print("Ball_controller: on_powerup_collected")
 	print(powerup_data)
 	print(powerup_id)
-#
+	
 	match powerup_id:
 		"powerup_rocket":
 			change_ball_type("rocket_ui")
@@ -88,7 +88,7 @@ func create_powerup_end_timer(timeout):
 	if powerup_timer:
 		powerup_timer.stop()
 		remove_child(powerup_timer)
-
+	
 	powerup_timer = Timer.new()
 	powerup_timer.set_one_shot(true)
 	powerup_timer.autostart = true

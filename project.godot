@@ -30,6 +30,7 @@ SignalsManager="*res://Scripts/Signals_Manager.gd"
 LevelsManager="*res://Scripts/Levels_Manager.gd"
 BricksManager="*res://Scripts/Bricks_Manager.gd"
 PowerupsManager="*res://Scripts/Powerups_Manager.gd"
+UserProgressManager="*res://Scripts/User_Progress_Manager.gd"
 
 [display]
 

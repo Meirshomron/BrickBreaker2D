@@ -2,15 +2,18 @@
   "bricks_type_map": {
     "0": {
       "name": "Brick_Basic",
-      "hits_to_destroy": 1
+      "hits_to_destroy": 1,
+      "score" : 5
     },
     "1": {
       "name": "Brick_Yellow",
-      "hits_to_destroy": 2
+      "hits_to_destroy": 2,
+      "score" : 12
     },
     "2": {
       "name": "Brick_Orange",
-      "hits_to_destroy": 1
+      "hits_to_destroy": 3,
+      "score" : 19
     }
   },
   "empty_brick_type" : -1

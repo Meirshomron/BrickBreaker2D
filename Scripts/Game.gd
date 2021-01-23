@@ -26,6 +26,8 @@ func init():
 	set_ball_start_pos()
 	start_hold_aim_active = orig_start_hold_aim_active
 	ball_controller.disable_ball()
+	
+	UserProgressManager.init()
 
 
 func set_ball_start_pos():

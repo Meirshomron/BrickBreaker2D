@@ -2,12 +2,16 @@
   "powerups_type_map": {
     "powerup_rocket": {
       "handler": "ball",
-      "timeout": 10
+      "display_name": "rocket ball",
+      "timeout": 10,
+      "score" : 25
     },
     "paddle_expand": {
       "handler": "paddle",
       "timeout": 10,
-      "scale_amount": 2
+      "display_name": "paddle expand",
+      "scale_amount": 2,
+      "score" : 20
     }
   }
 }

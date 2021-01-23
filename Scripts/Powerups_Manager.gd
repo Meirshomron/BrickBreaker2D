@@ -92,7 +92,7 @@ func on_powerup_collected(instance_id):
 	var powerup_data = powerups_extra_data.powerups_type_map[powerup_id]
 	print("emit " +  powerup_data.handler + "_power_up_collected")
 	SignalsManager.emit_signal(powerup_data.handler + "_power_up_collected", powerup_id, powerup_data)
-
+	SignalsManager.emit_signal("update_user_add_score", powerup_data.score)
 
 func release_all_powerups():
 	current_active_powerups = []

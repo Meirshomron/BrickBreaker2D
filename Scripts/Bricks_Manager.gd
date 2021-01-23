@@ -79,7 +79,7 @@ func release_all_bricks():
 		brick.queue_free()
 
 
-func get_brick_data(brick_instance):
+func get_brick_name_data(brick_instance):
 	var brick_type
 	var hits_to_destroy
 	var brick_name = brick_instance.name
@@ -106,8 +106,10 @@ func set_brick_hit(brick_instance, new_val):
 
 func _on_ball_hit_brick(hit_id):
 	var brick_instance = instance_from_id(hit_id) 
-	var brick_data = get_brick_data(brick_instance)
-	var hits_to_destroy = int(brick_data[1])
+	var brick_name_data = get_brick_name_data(brick_instance)
+	var brick_data = bricks_data.bricks_type_map[str(brick_name_data[0])]
+	SignalsManager.emit_signal("update_user_add_score", brick_data.score)
+	var hits_to_destroy = int(brick_name_data[1])
 	hits_to_destroy -= 1
 	if hits_to_destroy == 0:
 		brick_instance.queue_free()

@@ -21,12 +21,14 @@ To run the project, download/clone and run from Godot's editor.
 - [ ] Set different levels.
 - [ ] Animation of brick being shattered.
 
+And many more original and unique improvements on the basic known game.
+
+
 ## Exisiting powerups:
 
 - **paddle_expand** - Paddle expands do X2 original size.
 - **powerup_rocket** - Ball rockets through bricks.
 
-And many more original and unique improvements on the basic known game.
 
 ##  Images:
 <img  src="Images/game_init.png" width="600" >

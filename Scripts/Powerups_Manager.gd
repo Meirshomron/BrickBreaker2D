@@ -1,7 +1,7 @@
 extends Node
 
 onready var view_height = get_viewport().get_visible_rect().size.y
-onready var powerupsContainer = get_node("/root/Main/Powerups_Container")
+onready var powerupsContainer = get_node("/root/Game/Powerups_Container")
 
 var powerups_extra_data
 var current_level_powerups_data

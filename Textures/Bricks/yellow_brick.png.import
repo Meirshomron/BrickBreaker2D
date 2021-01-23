@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rocket_top.png-6d0d325002f824f2e7b4cf964d59004f.stex"
+path="res://.import/yellow_brick.png-f4c8430ed68284a1f39a3d12594b51b9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/rocket_top.png"
-dest_files=[ "res://.import/rocket_top.png-6d0d325002f824f2e7b4cf964d59004f.stex" ]
+source_file="res://Textures/Bricks/yellow_brick.png"
+dest_files=[ "res://.import/yellow_brick.png-f4c8430ed68284a1f39a3d12594b51b9.stex" ]
 
 [params]
 

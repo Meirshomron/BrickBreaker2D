@@ -2,7 +2,7 @@ extends Node
 
 onready var view_width = get_viewport().get_visible_rect().size.x
 onready var view_height = get_viewport().get_visible_rect().size.y
-onready var bricksContainer = get_node("/root/Main/Bricks_Container")
+onready var bricksContainer = get_node("/root/Game/Bricks_Container")
 
 var total_active_bricks
 var bricks_data

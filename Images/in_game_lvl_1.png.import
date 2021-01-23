@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/in_game_lvl_1.png-dfbdba3a1a0091ebeefdd1602c18c287.stex"
+path="res://.import/in_game_lvl_1.png-fd42321472356c63554d81d38ad2833f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Pics/in_game_lvl_1.png"
-dest_files=[ "res://.import/in_game_lvl_1.png-dfbdba3a1a0091ebeefdd1602c18c287.stex" ]
+source_file="res://Images/in_game_lvl_1.png"
+dest_files=[ "res://.import/in_game_lvl_1.png-fd42321472356c63554d81d38ad2833f.stex" ]
 
 [params]
 

@@ -1,6 +1,6 @@
 # BrickBreaker2D:
 
-Create the brick breaker game in Godot 3.2.
+Created the brick breaker game in Godot 3.2.
 
 This is a great game to create as a stepping stone to learn how to work within the Godot environment
 
@@ -26,3 +26,4 @@ And many more original and unique improvements on the basic known game.
 ##  Images:
 <img  src="Images/game_init.png" width="600" >
 <img  src="Images/in_game_lvl_1.png" width="600" >
+<img  src="Images/in_game_lvl_1_2.png" width="600" >

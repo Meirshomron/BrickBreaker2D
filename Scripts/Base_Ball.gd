@@ -55,31 +55,44 @@ func _on_Ball_area_entered(area):
 	if not is_enable_physics:
 		return
 	
-	# If we're hiting a brick on its sides then flip the x direction, otherwise we're hitting the brick from the top/bottom.
 	if area.is_in_group("Brick"):
 		root.on_ball_hit_brick(area)
-		if is_hit_sides(area):
-			direction.x = -direction.x
-			print("hit sides")
-		else:
-			direction.y = -direction.y
-			print("hit up/down")
-		
-	# If we're hiting a stone on its sides then flip the x direction, otherwise we're hitting the stone from the top/bottom.
+		set_ball_flip_direction(area)
 	elif area.is_in_group("Stone"):
-		if is_hit_sides(area):
-			direction.x = -direction.x
-		else:
-			direction.y = -direction.y
-			
+		set_ball_flip_direction(area)
 	elif area.is_in_group("Paddle"):
 		on_hit_paddle(area)
 
 
-func is_hit_sides(area):
+# If we're hiting a stone/brick on its sides then flip the x direction, otherwise we're hitting the from the top/bottom and flip the y direction..
+func set_ball_flip_direction(area):
 	var hit_half_height = area.get_node("CollisionShape2D").shape.get_extents().y
 	var hit_half_width = area.get_node("CollisionShape2D").shape.get_extents().x
-	return (root.global_position.x <= (area.global_position.x - hit_half_width) or root.global_position.x >= (area.global_position.x + hit_half_width)) and (root.global_position.y <= (area.global_position.y + hit_half_height) and root.global_position.y >= (area.global_position.y - hit_half_height))
+	
+	if is_hit_left(hit_half_height, hit_half_width, area):
+		direction.x = -abs(direction.x)
+	elif is_hit_right(hit_half_height, hit_half_width, area):
+		direction.x = abs(direction.x)
+	elif is_hit_bottom(hit_half_height, hit_half_width, area):
+		direction.y = abs(direction.y)
+	elif is_hit_top(hit_half_height, hit_half_width, area):
+		direction.y = -abs(direction.y)
+
+
+func is_hit_left(hit_half_height, hit_half_width, area):
+	return root.global_position.x <= (area.global_position.x - hit_half_width)  and (root.global_position.y <= (area.global_position.y + hit_half_height) and root.global_position.y >= (area.global_position.y - hit_half_height))
+
+
+func is_hit_right(hit_half_height, hit_half_width, area):
+	return root.global_position.x >= (area.global_position.x + hit_half_width) and (root.global_position.y <= (area.global_position.y + hit_half_height) and root.global_position.y >= (area.global_position.y - hit_half_height))
+
+
+func is_hit_bottom(hit_half_height, hit_half_width, area):
+	return root.global_position.y > (area.global_position.y + hit_half_height) and root.global_position.y >= (area.global_position.y - hit_half_height)
+
+
+func is_hit_top(hit_half_height, hit_half_width, area):
+	return root.global_position.y < (area.global_position.y - hit_half_height)
 
 
 func on_hit_paddle(area):
@@ -109,7 +122,6 @@ func set_to_paddle_pos(paddle_pos, paddle_half_width):
 
 func start():
 	direction = direction.rotated(aim_area.rotation)
-	auto_corret_direction()
 	aim_area.set_visible(false)
 	enable()
 

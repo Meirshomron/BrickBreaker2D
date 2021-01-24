@@ -6,7 +6,7 @@ func init():
 	rotation = deg2rad(-90)
 
 # overrride the Base_ball implementation with an empty one - so our rocket will go through bricks.
-func set_ball_flip_direction(area):
+func on_hit_obj(area):
 	pass
 
 func enable():

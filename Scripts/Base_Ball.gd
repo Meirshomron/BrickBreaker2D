@@ -35,7 +35,10 @@ func _physics_process(delta):
 	
 	root.position += direction * speed * delta
 	root.rotation = direction.angle()
-	
+	handle_boundaries()
+
+
+func handle_boundaries():
 	# Ceiling.
 	if root.position.y < ball_radius:
 		direction.y = -direction.y
@@ -57,15 +60,15 @@ func _on_Ball_area_entered(area):
 	
 	if area.is_in_group("Brick"):
 		root.on_ball_hit_brick(area)
-		set_ball_flip_direction(area)
+		on_hit_obj(area)
 	elif area.is_in_group("Stone"):
-		set_ball_flip_direction(area)
+		on_hit_obj(area)
 	elif area.is_in_group("Paddle"):
 		on_hit_paddle(area)
 
 
 # If we're hiting a stone/brick on its sides then flip the x direction, otherwise we're hitting the from the top/bottom and flip the y direction..
-func set_ball_flip_direction(area):
+func on_hit_obj(area):
 	var hit_half_height = area.get_node("CollisionShape2D").shape.get_extents().y
 	var hit_half_width = area.get_node("CollisionShape2D").shape.get_extents().x
 	
@@ -106,14 +109,6 @@ func on_hit_paddle(area):
 		var norm = rel / (hit_half_width * 2)
 		var bounce = norm * (5 * PI / 12)
 		direction = Vector2(-sin(bounce), -cos(bounce))
-
-
-# if the direction is (0,-1 or 1) then the ball can be hitting 2 bricks at once so we offset the ball a bit randomly. 
-func auto_corret_direction():
-	var direction_abs_y = abs(direction.y) 
-	if direction.x > -0.02 and direction.x < 0.02 and direction_abs_y > 0.98 and direction_abs_y < 1.02:
-		var offset = rand_range(-0.1, 0.1)
-		direction.x += offset
 
 
 func set_to_paddle_pos(paddle_pos, paddle_half_width):

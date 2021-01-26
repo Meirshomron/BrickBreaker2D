@@ -12,6 +12,8 @@ var lives_parent
 func _ready():
 	SignalsManager.connect("update_user_set_score", self, "set_score")
 	SignalsManager.connect("update_user_add_score", self, "add_score")
+	SignalsManager.connect("increase_user_life", self, "increase_life")
+	SignalsManager.connect("decrease_user_life", self, "decrease_life")
 
 func init():
 	score_txt = HUD.get_node("Score")

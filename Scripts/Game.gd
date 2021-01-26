@@ -46,12 +46,14 @@ func _physics_process(_delta):
 
 
 func _on_ball_out_of_bounds():
-	UserProgressManager.decrease_life()
+	SignalsManager.emit_signal("decrease_user_life")
 	paddle.init()
 	init_ball()
 
+
 func game_over():
 	init()
+
 
 func _on_ball_hit_brick(hit_id):
 	PowerupsManager._on_ball_hit_brick(hit_id)

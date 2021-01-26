@@ -26,7 +26,6 @@ func init():
 
 
 func _physics_process(delta):
-	
 	if not is_enable_physics:
 		return
 		
@@ -116,7 +115,7 @@ func set_to_paddle_pos(paddle_pos, paddle_half_width):
 
 
 func start():
-	set_aim_area_direction()
+	set_to_aim_area_direction()
 	set_aim_area_visible(false)
 	enable()
 
@@ -125,7 +124,7 @@ func get_aim_area():
 	return aim_area
 
 
-func set_aim_area_direction():
+func set_to_aim_area_direction():
 	direction = direction.rotated(aim_area.rotation)
 
 

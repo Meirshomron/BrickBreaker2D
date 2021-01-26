@@ -52,8 +52,9 @@ func decrease_life():
 
 
 func update_ui():
-	#TODO: set ui score
+	#score
 	score_txt.text = "SCORE: " + str(score_count)
+	#lives
 	for i in range(1, 4):
 		var live_img = lives_parent.get_node("Life_" + str(i))
 		if i <= lives_count:

@@ -32,7 +32,7 @@ func _physics_process(delta):
 		
 	if is_hit_floor:
 		return
-	
+
 	root.position += direction * speed * delta
 	root.rotation = direction.angle()
 	handle_boundaries()
@@ -76,9 +76,9 @@ func on_hit_obj(area):
 		direction.x = -abs(direction.x)
 	elif is_hit_right(hit_half_height, hit_half_width, area):
 		direction.x = abs(direction.x)
-	elif is_hit_bottom(hit_half_height, hit_half_width, area):
+	elif is_hit_bottom(hit_half_height, area):
 		direction.y = abs(direction.y)
-	elif is_hit_top(hit_half_height, hit_half_width, area):
+	elif is_hit_top(hit_half_height, area):
 		direction.y = -abs(direction.y)
 
 
@@ -90,11 +90,11 @@ func is_hit_right(hit_half_height, hit_half_width, area):
 	return root.global_position.x >= (area.global_position.x + hit_half_width) and (root.global_position.y <= (area.global_position.y + hit_half_height) and root.global_position.y >= (area.global_position.y - hit_half_height))
 
 
-func is_hit_bottom(hit_half_height, hit_half_width, area):
+func is_hit_bottom(hit_half_height, area):
 	return root.global_position.y > (area.global_position.y + hit_half_height) and root.global_position.y >= (area.global_position.y - hit_half_height)
 
 
-func is_hit_top(hit_half_height, hit_half_width, area):
+func is_hit_top(hit_half_height, area):
 	return root.global_position.y < (area.global_position.y - hit_half_height)
 
 
@@ -116,9 +116,21 @@ func set_to_paddle_pos(paddle_pos, paddle_half_width):
 
 
 func start():
-	direction = direction.rotated(aim_area.rotation)
-	aim_area.set_visible(false)
+	set_aim_area_direction()
+	set_aim_area_visible(false)
 	enable()
+
+
+func get_aim_area():
+	return aim_area
+
+
+func set_aim_area_direction():
+	direction = direction.rotated(aim_area.rotation)
+
+
+func set_aim_area_visible(is_visible):
+	aim_area.set_visible(is_visible)
 
 
 func disable():

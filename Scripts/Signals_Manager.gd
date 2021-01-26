@@ -7,3 +7,4 @@ signal power_up_collected(powerup_id)
 
 signal update_user_set_score(score)
 signal update_user_add_score(score)
+signal game_over

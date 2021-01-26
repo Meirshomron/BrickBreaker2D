@@ -50,14 +50,21 @@ func enable_ball():
 func start_ball():
 	current_ball.start()
 
+
 func change_ball_type(new_ball_type):
 	print("Ball_Controller: change_ball_type")
 	disable_ball()
 	var previous_direction = current_ball.direction
+	var is_previous_aim_area_visible = current_ball.get_aim_area().is_visible()
 	current_ball.set_visible(false)
 	current_ball_type = new_ball_type
 	init_ball()
-	start_ball()
+	# if the aim is active then the ball changed before the ball was released.
+	# can happen if we lose a life and then collect a ball powerup before releasing the ball again.
+	if not is_previous_aim_area_visible:
+		enable_ball()
+		
+	current_ball.set_aim_area_visible(is_previous_aim_area_visible)
 	current_ball.direction = previous_direction
 
 

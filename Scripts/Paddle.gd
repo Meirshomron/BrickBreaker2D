@@ -28,6 +28,8 @@ func init():
 	is_init = true
 	if powerup_timer:
 		powerup_timout()
+	set_start_pos()
+
 
 func _physics_process(delta):
 	

@@ -10,24 +10,24 @@ var orig_start_hold_aim_active
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	orig_start_hold_aim_active = start_hold_aim_active
+	SignalsManager.connect("game_over", self, "game_over")
 	init()
 
 
 func init():
 	# Init LevelsManager, when ready will init the BricksManager and the powerupsManager with the current level.
 	LevelsManager.init()
-	
-	# Init paddle.
+	UserProgressManager.init()
 	paddle.init()
-	paddle.set_start_pos()
-	
+	init_ball()
+
+
 	# Init ball.
+func init_ball():
 	ball_controller.init()
 	set_ball_start_pos()
 	start_hold_aim_active = orig_start_hold_aim_active
 	ball_controller.disable_ball()
-	
-	UserProgressManager.init()
 
 
 func set_ball_start_pos():
@@ -46,8 +46,12 @@ func _physics_process(_delta):
 
 
 func _on_ball_out_of_bounds():
-	init()
+	UserProgressManager.decrease_life()
+	paddle.init()
+	init_ball()
 
+func game_over():
+	init()
 
 func _on_ball_hit_brick(hit_id):
 	PowerupsManager._on_ball_hit_brick(hit_id)

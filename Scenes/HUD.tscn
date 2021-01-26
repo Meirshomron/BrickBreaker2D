@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Fonts/Roboto_Bold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Textures/hud_heartFull.png" type="Texture" id=2]
 
 [node name="HUD" type="Node2D"]
 
@@ -13,3 +14,30 @@ custom_fonts/normal_font = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Lives" type="HBoxContainer" parent="."]
+margin_left = 12.0
+margin_top = 36.0
+margin_right = 179.0
+margin_bottom = 81.0
+rect_scale = Vector2( 0.8, 0.8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Life_1" type="TextureRect" parent="Lives"]
+margin_right = 53.0
+margin_bottom = 45.0
+texture = ExtResource( 2 )
+
+[node name="Life_2" type="TextureRect" parent="Lives"]
+margin_left = 57.0
+margin_right = 110.0
+margin_bottom = 45.0
+texture = ExtResource( 2 )
+
+[node name="Life_3" type="TextureRect" parent="Lives"]
+margin_left = 114.0
+margin_right = 167.0
+margin_bottom = 45.0
+texture = ExtResource( 2 )

@@ -7,8 +7,8 @@ This is a great game to create as a stepping stone to learn how to work within t
 To run the project, download/clone and run from Godot's editor.
 
 ## Future Planned Upgrades
-- [ ] Add Score.
-- [ ] Add lives.
+- [x] Add Score.
+- [x] Add lives.
 - [ ] Create walls inside the screen view.
 - [ ] Add more powerups.
 	- [ ] Ball speed.

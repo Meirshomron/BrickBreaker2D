@@ -2,14 +2,13 @@ extends Node2D
 
 onready var ball_controller = $Ball
 onready var paddle = $Paddle
+onready var os_system_name = OS.get_name()
 
-export(bool) var start_hold_aim_active = true
-var orig_start_hold_aim_active
+var is_ball_released = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	orig_start_hold_aim_active = start_hold_aim_active
 	SignalsManager.connect("game_over", self, "game_over")
 	init()
 
@@ -25,24 +24,29 @@ func init():
 	# Init ball.
 func init_ball():
 	ball_controller.init()
-	set_ball_start_pos()
-	start_hold_aim_active = orig_start_hold_aim_active
+	set_ball_to_paddle_pos()
+	is_ball_released = false
 	ball_controller.disable_ball()
 
 
-func set_ball_start_pos():
+func set_ball_to_paddle_pos():
 	var paddle_pos = paddle.get_position()
 	var paddle_half_width = paddle.get_node("CollisionShape2D").shape.get_extents().y
 	ball_controller.set_to_paddle_pos(paddle_pos, paddle_half_width)
 
 
-func _physics_process(_delta):
-	if start_hold_aim_active:
-		if Input.is_action_pressed("ui_select"):
+func _input(event):
+	if not is_ball_released:
+		# Handle aiming and releasing the ball in both pc and mobile.
+		if Input.is_action_pressed("ui_select") or (event is InputEventScreenTouch and not event.is_pressed()):
 			ball_controller.start_ball()
-			start_hold_aim_active = false
-		else:
-			set_ball_start_pos()
+			paddle.enable_paddle_movement()
+			is_ball_released = true
+
+
+func _physics_process(_delta):
+	if not is_ball_released:
+		set_ball_to_paddle_pos()
 
 
 func _on_ball_out_of_bounds():

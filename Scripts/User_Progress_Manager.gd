@@ -14,6 +14,7 @@ func _ready():
 	SignalsManager.connect("update_user_add_score", self, "add_score")
 	SignalsManager.connect("increase_user_life", self, "increase_life")
 	SignalsManager.connect("decrease_user_life", self, "decrease_life")
+	SignalsManager.connect("user_power_up_collected", self, "on_powerup_collected")
 
 func init():
 	score_txt = HUD.get_node("Score")
@@ -33,19 +34,20 @@ func add_score(add_score):
 	update_ui()
 
 
-func increase_life():
+func increase_life(amount = 1):
 	if lives_count == max_total_lives:
 		return
 	else:
-		lives_count += 1
+		lives_count += amount
+		lives_count = clamp(lives_count, 0, max_total_lives)
 		update_ui()
 
 
-func decrease_life():
+func decrease_life(amount = 1):
 	if lives_count == 0:
 		return
 	else:
-		lives_count -= 1
+		lives_count -= amount
 		update_ui()
 		if lives_count == 0:
 			SignalsManager.emit_signal("game_over")
@@ -61,4 +63,14 @@ func update_ui():
 			live_img.set_visible(true)
 		else:
 			live_img.set_visible(false)
-			
+
+
+func on_powerup_collected(powerup_id, powerup_data):
+	print("User: on_powerup_collected")
+	print(powerup_data)
+	print(powerup_id)
+	
+	match powerup_id:
+		"extra_life":
+			increase_life(powerup_data.amount)
+	

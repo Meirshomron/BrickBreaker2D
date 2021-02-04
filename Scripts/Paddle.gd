@@ -5,7 +5,7 @@ onready var view_height = get_viewport().get_visible_rect().size.y
 onready var paddle_half_height = $CollisionShape2D.shape.get_extents().y
 onready var paddle_half_width = $CollisionShape2D.shape.get_extents().x
 
-var speed = 50
+var speed = 40
 var acceleration = 0
 var start_scale_x
 var is_init

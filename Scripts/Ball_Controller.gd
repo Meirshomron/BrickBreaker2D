@@ -37,6 +37,7 @@ func init_ball():
 	current_ball = balls_parent.get_node(current_ball_type)
 	current_ball.set_visible(true)
 	current_ball.init()
+	disable_ball()
 
 
 func disable_ball():

@@ -12,6 +12,12 @@
       "display_name": "paddle expand",
       "scale_amount": 2,
       "score": 20
+    },
+    "extra_life": {
+      "handler": "user",
+      "display_name": "extra life",
+      "amount": 1,
+      "score": 50
     }
   }
 }

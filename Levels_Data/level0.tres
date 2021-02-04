@@ -6,9 +6,10 @@
 script = ExtResource( 1 )
 bricks = [ [ 1, 1, 1, 1 ], [ 0, 1, 1, 2, 2, 1, 1, 0 ], [ 0, 1, 1, -1, -1, 1, 1, 0 ], [ 0, 1, 1, -1, -1, 1, 1, 0 ], [ 0, 1, 1, 2, 2, 1, 1, 0 ], [ 1, 1, 1, 1 ] ]
 powerups = {
-"powerups_probabilities": 0.5,
+"powerups_probabilities": 0.3,
 "probabilities": {
-"powerup_rocket": 0.5,
-"paddle_expand": 0.5
+"powerup_rocket": 0.4,
+"paddle_expand": 0.4,
+"extra_life": 0.2
 }
 }

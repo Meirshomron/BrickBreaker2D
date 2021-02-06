@@ -122,26 +122,29 @@ func set_brick_hit(brick_instance, new_val):
 	brick_instance.name = brick_new_name
 	add_brick_hit_lines(brick_instance)
 
-# Create 'shattered' lines on the hit brick. 
+
+# Create 'shattered' lines on the hit brick. (in the future will replace this shattered animation)
 func add_brick_hit_lines(brick_instance):
 	var line2D = brick_instance.get_node("Line2D")
 	line2D.set_default_color(Color(0,0,0))
 	line2D.set_width(1.1)
 	
 	var brick_half_size = brick_instance.get_node("CollisionShape2D").shape.get_extents()
-	brick_hit_lines_arr = []
-	brick_hit_lines_arr.push_back(Vector2(0, 0))
-	brick_hit_lines_arr.push_back(Vector2(-brick_half_size.x, brick_half_size.y))
-	brick_hit_lines_arr.push_back(Vector2(-brick_half_size.x, -brick_half_size.y))
-	brick_hit_lines_arr.push_back(Vector2(brick_half_size.x, -brick_half_size.y))
-	brick_hit_lines_arr.push_back(Vector2(brick_half_size.x, brick_half_size.y))
-
 	randomize()
-	for i in 8:
+	var previous_point_side = 0
+	for i in 12:
 		var randX = rand_range(-brick_half_size.x, brick_half_size.x)
 		var randY = rand_range(-brick_half_size.y, brick_half_size.y)
-		brick_hit_lines_arr.push_back(Vector2(randX, randY))
-	
-	brick_hit_lines_arr.shuffle()
-	for point in brick_hit_lines_arr:
-		line2D.add_point(point)
+		var rand_side = randi()%4 + 1
+		# make sure every line goes from a side to another and on the same side.
+		while previous_point_side == rand_side:
+			rand_side = randi()%4 + 1
+		previous_point_side = rand_side
+		if rand_side == 1:
+			line2D.add_point(Vector2(randX, -brick_half_size.y))
+		if rand_side == 2:
+			line2D.add_point(Vector2(randX, brick_half_size.y))
+		if rand_side == 3:
+			line2D.add_point(Vector2(brick_half_size.x, randY))
+		if rand_side == 4:
+			line2D.add_point(Vector2(-brick_half_size.x, randY))

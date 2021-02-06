@@ -6,7 +6,7 @@ onready var bricksContainer = get_node("/root/Game/Bricks_Container")
 
 var total_active_bricks
 var bricks_data
-
+var brick_hit_lines_arr
 
 func _ready():
 	print("Bricks_Manager: _ready")
@@ -96,14 +96,6 @@ func get_brick_name_data(brick_instance):
 	return [brick_type, hits_to_destroy]
 
 
-func set_brick_hit(brick_instance, new_val):
-	var brick_name = brick_instance.name
-	var brick_type_sperator_index = brick_name.find("_")
-	var brick_hits_sperator_index = brick_name.find("|")
-	var brick_new_name = brick_name.substr(0, brick_type_sperator_index + 1) + str(new_val) + brick_name.substr(brick_hits_sperator_index)
-	brick_instance.name = brick_new_name
-
-
 func _on_ball_hit_brick(hit_id):
 	var brick_instance = instance_from_id(hit_id) 
 	var brick_name_data = get_brick_name_data(brick_instance)
@@ -116,8 +108,40 @@ func _on_ball_hit_brick(hit_id):
 		total_active_bricks -= 1
 		print("total_active_bricks = " + str(total_active_bricks))
 		if total_active_bricks <= 0:
-			print("You Won!")
-			LevelsManager.on_current_level_completed()
+			SignalsManager.emit_signal("level_completed")
 	else:
 		set_brick_hit(brick_instance, hits_to_destroy)
 		#TODO: set animation state of the brick.
+
+
+func set_brick_hit(brick_instance, new_val):
+	var brick_name = brick_instance.name
+	var brick_type_sperator_index = brick_name.find("_")
+	var brick_hits_sperator_index = brick_name.find("|")
+	var brick_new_name = brick_name.substr(0, brick_type_sperator_index + 1) + str(new_val) + brick_name.substr(brick_hits_sperator_index)
+	brick_instance.name = brick_new_name
+	add_brick_hit_lines(brick_instance)
+
+# Create 'shattered' lines on the hit brick. 
+func add_brick_hit_lines(brick_instance):
+	var line2D = brick_instance.get_node("Line2D")
+	line2D.set_default_color(Color(0,0,0))
+	line2D.set_width(1.1)
+	
+	var brick_half_size = brick_instance.get_node("CollisionShape2D").shape.get_extents()
+	brick_hit_lines_arr = []
+	brick_hit_lines_arr.push_back(Vector2(0, 0))
+	brick_hit_lines_arr.push_back(Vector2(-brick_half_size.x, brick_half_size.y))
+	brick_hit_lines_arr.push_back(Vector2(-brick_half_size.x, -brick_half_size.y))
+	brick_hit_lines_arr.push_back(Vector2(brick_half_size.x, -brick_half_size.y))
+	brick_hit_lines_arr.push_back(Vector2(brick_half_size.x, brick_half_size.y))
+
+	randomize()
+	for i in 8:
+		var randX = rand_range(-brick_half_size.x, brick_half_size.x)
+		var randY = rand_range(-brick_half_size.y, brick_half_size.y)
+		brick_hit_lines_arr.push_back(Vector2(randX, randY))
+	
+	brick_hit_lines_arr.shuffle()
+	for point in brick_hit_lines_arr:
+		line2D.add_point(point)

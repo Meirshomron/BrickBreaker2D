@@ -8,7 +8,8 @@ var is_ball_released = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	SignalsManager.connect("game_over", self, "game_over")
+	SignalsManager.connect("game_over", self, "on_game_over")
+	SignalsManager.connect("level_completed", self, "on_level_completed")
 	init()
 
 
@@ -52,5 +53,11 @@ func _on_ball_hit_brick(hit_id):
 	BricksManager._on_ball_hit_brick(hit_id)
 
 
-func game_over():
+func on_game_over():
 	init()
+
+func on_level_completed():
+	LevelsManager.on_current_level_completed()
+	paddle.init()
+	ball_controller.init()
+	is_ball_released = false

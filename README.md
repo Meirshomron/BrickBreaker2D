@@ -17,9 +17,9 @@ To run the project, download/clone and run from Godot's editor.
 	- [ ] Small paddle.
 	- [ ] Go through side walls.
 	- [ ] Plant bombs near the brick.
-	- [ ] Increase/Decrease lives.
-- [ ] Set different levels.
-- [ ] Animation of brick being shattered.
+	- [X] Increase/Decrease lives.
+- [X] Set different levels.
+- [ ] Animation of brick being shattered. (temporarily i'm drawing a scribble on the hit brick)
 
 And many more original and unique improvements on the basic known game.
 
@@ -34,4 +34,7 @@ And many more original and unique improvements on the basic known game.
 ##  Images:
 <img  src="Images/game_init.png" width="600" >
 <img  src="Images/in_game_lvl_1.png" width="600" >
-<img  src="Images/in_game_lvl_1_2.png" width="600" >
+<img  src="Images/in_game_lvl_2.png" width="600" >
+<img  src="Images/in_game_lvl_3.png" width="600" >
+<img  src="Images/in_game_lvl_4.png" width="600" >
+<img  src="Images/in_game_lvl_4_2.png" width="600" >

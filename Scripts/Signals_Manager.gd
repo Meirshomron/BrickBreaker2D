@@ -11,4 +11,6 @@ signal update_user_add_score(score)
 signal decrease_user_life
 signal increase_user_life
 
+signal level_completed
+
 signal game_over

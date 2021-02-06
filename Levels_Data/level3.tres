@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Level_Class.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+bricks = [ [ 1, 2, 1, -1, 1, 2, 1 ], [ 1, 2, 1, -1, 1, 2, 1 ], [ 1, 2, 1, -1, 1, 2, 1 ], [ 1, 2, 1, -1, 1, 2, 1 ], [ 1, 2, 1, -1, 1, 2, 1 ], [ 1, 2, 1, -1, 1, 2, 1 ], [ 1, 2, 1, -1, 1, 2, 1 ], [ 1, 2, 1, -1, 1, 2, 1 ] ]
+powerups = {
+"powerups_probabilities": 0.35,
+"probabilities": {
+"powerup_rocket": 0.3,
+"paddle_expand": 0.6,
+"extra_life": 0.1
+}
+}

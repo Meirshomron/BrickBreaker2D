@@ -4,11 +4,12 @@
 
 [resource]
 script = ExtResource( 1 )
-bricks = [ [ 1, 1, 1, 1 ], [ 1, 1, 1, 0 ], [  1, 1, 0 ], [ 1, 1, 0 ], [ 1, 1, 0 ], [ 1, 1 ] ]
+bricks = [ [ 0, 0, 0, 0, 0, 0, 0, 0, 0 ], [ 0, 1, -1, -1, -1, -1, -1, 1, 0 ], [ 0, -1, 1, -1, -1, -1, 1, -1, 0 ], [ 0, -1, -1, 1, -1, 1, -1, -1, 0 ], [ 0, -1, -1, -1, 1, -1, -1, -1, 0 ], [ 0, -1, -1, 1, -1, 1, -1, -1, 0 ], [ 0, -1, 1, -1, -1, -1, 1, -1, 0 ], [ 0, 1, -1, -1, -1, -1, -1, 1, 0 ], [ 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ]
 powerups = {
-"powerups_probabilities": 0.2,
+"powerups_probabilities": 0.35,
 "probabilities": {
-"powerup_rocket": 0.2,
-"paddle_expand": 0.8
+"powerup_rocket": 0.4,
+"paddle_expand": 0.4,
+"extra_life": 0.2
 }
 }

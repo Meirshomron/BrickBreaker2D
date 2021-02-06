@@ -82,6 +82,7 @@ func set_paddle_scale_x(scale_val):
 		start_paddle_half_width = paddle_half_width
 	paddle_half_width = start_paddle_half_width * scale.x
 
+
 func create_powerup_end_timer(timeout):
 	if powerup_timer:
 		powerup_timer.stop()

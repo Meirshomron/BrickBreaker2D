@@ -56,6 +56,7 @@ func _on_ball_hit_brick(hit_id):
 func on_game_over():
 	init()
 
+
 func on_level_completed():
 	LevelsManager.on_current_level_completed()
 	paddle.init()

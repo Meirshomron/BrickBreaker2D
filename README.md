@@ -34,7 +34,7 @@ And many more original and unique improvements on the basic known game.
 ##  Images:
 
 - **root hierarchy**
-<img  src="Images/root_hierarchy.png" width="600" >
+<img  src="Images/root_hierarchy.png" width="300" >
 
 - **level 1**
 <img  src="Images/game_init.png" width="600" >

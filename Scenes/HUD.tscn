@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Fonts/Roboto_Bold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Textures/hud_heartFull.png" type="Texture" id=2]
+[ext_resource path="res://Textures/right.png" type="Texture" id=3]
+[ext_resource path="res://Textures/pause.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Pause.gd" type="Script" id=5]
 
 [node name="HUD" type="Node2D"]
 
@@ -41,3 +44,37 @@ margin_left = 114.0
 margin_right = 167.0
 margin_bottom = 45.0
 texture = ExtResource( 2 )
+
+[node name="Pause" type="Node2D" parent="."]
+pause_mode = 2
+position = Vector2( 988, 8 )
+script = ExtResource( 5 )
+
+[node name="pauseButton" type="TextureButton" parent="Pause"]
+margin_left = -40.0
+margin_top = -32.0
+margin_right = 60.0
+margin_bottom = 68.0
+rect_scale = Vector2( 0.3, 0.3 )
+rect_pivot_offset = Vector2( 50, 50 )
+texture_normal = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="resumeButton" type="TextureButton" parent="Pause"]
+visible = false
+margin_left = -40.0
+margin_top = -32.0
+margin_right = 60.0
+margin_bottom = 68.0
+rect_scale = Vector2( 0.3, 0.3 )
+rect_pivot_offset = Vector2( 50, 50 )
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_down" from="Pause/pauseButton" to="Pause" method="_on_pauseButton_button_down"]
+[connection signal="button_up" from="Pause/pauseButton" to="Pause" method="_on_pauseButton_button_up"]
+[connection signal="button_down" from="Pause/resumeButton" to="Pause" method="_on_resumeButton_button_down"]
+[connection signal="button_up" from="Pause/resumeButton" to="Pause" method="_on_resumeButton_button_up"]

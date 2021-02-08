@@ -29,6 +29,7 @@ And many more original and unique improvements on the basic known game.
 - **paddle_expand** - Paddle expands do X2 original size.
 - **powerup_rocket** - Ball rockets through bricks.
 - **extra_life** - User gets an extra life.
+- **multiple_balls** - adds 3 more balls of the current ball type.
 
 
 ##  Images:

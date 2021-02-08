@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Aim_Area.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Ball_Controller.gd" type="Script" id=6]
+
+[node name="Ball_Controller" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="aim_area" parent="." instance=ExtResource( 3 )]
+
+[node name="Balls_Container" type="Node2D" parent="."]

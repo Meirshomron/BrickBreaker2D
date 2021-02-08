@@ -8,6 +8,10 @@ signal power_up_collected(powerup_id)
 signal update_user_set_score(score)
 signal update_user_add_score(score)
 
+signal ball_hit_brick(hit_id)
+signal ball_hit_floor(ball_id)
+signal ball_out_of_bounds
+
 signal decrease_user_life
 signal increase_user_life
 

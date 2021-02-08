@@ -48,7 +48,7 @@ func init_level(level_powerups):
 	release_all_powerups()
 
 
-func _on_ball_hit_brick(hit_id):
+func on_ball_hit_brick(hit_id):
 #	print("Powerups_Manager: _on_ball_hit_brick")
 	var powerup_id = calculate_powerup()
 	if powerup_id:

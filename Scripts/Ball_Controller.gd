@@ -1,21 +1,21 @@
-extends Area2D
+extends Node2D
 
-signal ball_out_of_bounds
-signal ball_hit_brick
+onready var ballsContainer = $Balls_Container
+onready var aim_area = $aim_area
 
-onready var balls_parent = $UI_Container
-
-const ball_types = ["standard_ui", "rocket_ui"]
-var start_ball_type = "standard_ui"
+const ball_types = ["Standard_Ball", "Rocket_Ball"]
+var start_ball_type = "Standard_Ball"
 
 var current_ball
+var current_ball_res
 var current_ball_type
-var current_ball_contdown
 var powerup_timer 
 
 
 func _ready():
+	current_ball_res = load("res://Scenes/Balls/" + start_ball_type + ".tscn")
 	SignalsManager.connect("ball_power_up_collected", self, "on_powerup_collected")
+	SignalsManager.connect("ball_hit_floor", self, "on_ball_hit_floor")
 
 
 func init():
@@ -25,62 +25,62 @@ func init():
 		remove_child(powerup_timer)
 		powerup_timer = null
 	current_ball_type = start_ball_type
+	aim_area.set_visible(true)
+	if current_ball:
+		release_all_balls()
 	init_ball()
-
-
-func set_to_paddle_pos(paddle_pos, paddle_half_width):
-	current_ball.set_to_paddle_pos(paddle_pos, paddle_half_width)
 
 
 func init_ball():
 	print("Ball_Controller: init_ball current = " + str(current_ball_type))
-	current_ball = balls_parent.get_node(current_ball_type)
-	current_ball.set_visible(true)
+	current_ball = current_ball_res.instance()
+	ballsContainer.add_child(current_ball, true)
 	current_ball.init()
-	disable_ball()
+	disable_balls()
 
 
-func disable_ball():
-	current_ball.disable()
+func set_to_paddle_pos(paddle_pos, paddle_half_width):
+	current_ball.set_to_paddle_pos(paddle_pos, paddle_half_width)
+	aim_area.position = current_ball.position
 
 
-func enable_ball():
-	current_ball.enable()
+func disable_balls():
+	for ball in ballsContainer.get_children():
+		ball.disable()
+
+
+func enable_balls():
+	for ball in ballsContainer.get_children():
+		current_ball.enable()
+
+
+func release_all_balls():
+	for ball in ballsContainer.get_children():
+		ball.queue_free()
 
 
 func start_ball():
-	current_ball.start()
+	aim_area.set_visible(false)
+	current_ball.start(aim_area.rotation)
 
 
-func change_ball_type(new_ball_type):
-	print("Ball_Controller: change_ball_type")
-	disable_ball()
-	var previous_direction = current_ball.direction
-	var is_previous_aim_area_visible = current_ball.get_aim_area().is_visible()
-	current_ball.set_visible(false)
-	current_ball_type = new_ball_type
-	init_ball()
-	# if the aim is active then the ball changed before the ball was released.
-	# can happen if we lose a life and then collect a ball powerup before releasing the ball again.
-	if not is_previous_aim_area_visible:
-		enable_ball()
-		
-	current_ball.set_aim_area_visible(is_previous_aim_area_visible)
-	current_ball.direction = previous_direction
+func on_ball_hit_floor(ball_id):
+		var num_of_balls = ballsContainer.get_child_count()
+		if num_of_balls == 1:
+			SignalsManager.emit_signal("ball_out_of_bounds")
+		else:
+			var ball_instance = instance_from_id(ball_id) 
+			var current_ball_id = current_ball.get_instance_id()
+			ball_instance.queue_free()
+			if current_ball_id == ball_id:
+				for i in num_of_balls:
+					current_ball = ballsContainer.get_child(i)
+					current_ball_id = current_ball.get_instance_id()
+					if current_ball_id != ball_id:
+						break
 
 
-func _on_Ball_area_entered(area):
-	current_ball._on_Ball_area_entered(area)
-
-
-func on_ball_hit_brick(area):
-	emit_signal("ball_hit_brick", area.get_instance_id())
-
-
-func on_ball_out_of_bounds():
-	emit_signal("ball_out_of_bounds")
-
-
+# ----------- Powerups ----------- #
 func on_powerup_collected(powerup_id, powerup_data):
 	print("Ball_controller: on_powerup_collected")
 	print(powerup_data)
@@ -88,8 +88,38 @@ func on_powerup_collected(powerup_id, powerup_data):
 	
 	match powerup_id:
 		"powerup_rocket":
-			change_ball_type("rocket_ui")
+			change_ball_type("Rocket_Ball")
 			create_powerup_end_timer(powerup_data.timeout)
+		"multiple_balls":
+			create_multiple_balls(powerup_data.amount)
+
+
+func change_ball_type(new_ball_type):
+	print("Ball_Controller: change_ball_type")
+	disable_balls()
+	current_ball_type = new_ball_type
+	current_ball_res = load("res://Scenes/Balls/" + current_ball_type + ".tscn")
+	var new_ball
+	for prev_ball in ballsContainer.get_children():
+		var previous_direction = prev_ball.direction
+		var previous_position = prev_ball.position
+		prev_ball.queue_free()
+		
+		new_ball = current_ball_res.instance()
+		ballsContainer.add_child(new_ball, true)
+		new_ball.init()
+		new_ball.direction = previous_direction
+		new_ball.position = previous_position
+	current_ball = new_ball
+
+
+func create_multiple_balls(amount):
+	for i in amount:
+		var extra_ball = current_ball_res.instance()
+		ballsContainer.add_child(extra_ball, true)
+		extra_ball.init()
+		extra_ball.position = current_ball.position
+		extra_ball.start(current_ball.rotation + rand_range(-0.3, 0.3))
 
 
 func create_powerup_end_timer(timeout):

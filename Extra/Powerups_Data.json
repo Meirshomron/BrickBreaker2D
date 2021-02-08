@@ -18,6 +18,12 @@
       "display_name": "extra life",
       "amount": 1,
       "score": 50
+    },
+    "multiple_balls": {
+      "handler": "ball",
+      "display_name": "multiple balls",
+      "amount": 3,
+      "score": 50
     }
   }
 }

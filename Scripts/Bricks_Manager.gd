@@ -96,7 +96,7 @@ func get_brick_name_data(brick_instance):
 	return [brick_type, hits_to_destroy]
 
 
-func _on_ball_hit_brick(hit_id):
+func on_ball_hit_brick(hit_id):
 	var brick_instance = instance_from_id(hit_id) 
 	var brick_name_data = get_brick_name_data(brick_instance)
 	var brick_data = bricks_data.bricks_type_map[str(brick_name_data[0])]

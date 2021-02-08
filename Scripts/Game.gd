@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var ball_controller = $Ball
+onready var ball_controller = $BallController
 onready var paddle = $Paddle
 
 var is_ball_released = false
@@ -10,6 +10,8 @@ var is_ball_released = false
 func _ready():
 	SignalsManager.connect("game_over", self, "on_game_over")
 	SignalsManager.connect("level_completed", self, "on_level_completed")
+	SignalsManager.connect("ball_hit_brick", self, "on_ball_hit_brick")
+	SignalsManager.connect("ball_out_of_bounds", self, "on_ball_out_of_bounds")
 	init()
 
 
@@ -41,16 +43,16 @@ func _physics_process(_delta):
 		set_ball_to_paddle_pos()
 
 
-func _on_ball_out_of_bounds():
+func on_ball_out_of_bounds():
 	SignalsManager.emit_signal("decrease_user_life")
 	paddle.init()
 	ball_controller.init()
 	is_ball_released = false
 
 
-func _on_ball_hit_brick(hit_id):
-	PowerupsManager._on_ball_hit_brick(hit_id)
-	BricksManager._on_ball_hit_brick(hit_id)
+func on_ball_hit_brick(hit_id):
+	PowerupsManager.on_ball_hit_brick(hit_id)
+	BricksManager.on_ball_hit_brick(hit_id)
 
 
 func on_game_over():

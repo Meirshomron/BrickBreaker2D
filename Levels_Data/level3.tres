@@ -9,7 +9,8 @@ powerups = {
 "powerups_probabilities": 0.35,
 "probabilities": {
 "powerup_rocket": 0.3,
-"paddle_expand": 0.6,
-"extra_life": 0.1
+"paddle_expand": 0.3,
+"extra_life": 0.2,
+"multiple_balls": 0.2
 }
 }

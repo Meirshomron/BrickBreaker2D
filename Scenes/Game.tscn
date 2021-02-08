@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Ball_Controller.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Textures/Background.png" type="Texture" id=5]
 
@@ -23,10 +23,8 @@ __meta__ = {
 
 [node name="Powerups_Container" type="Node2D" parent="."]
 
-[node name="Ball" parent="." instance=ExtResource( 3 )]
+[node name="BallController" parent="." instance=ExtResource( 3 )]
 
 [node name="Paddle" parent="." instance=ExtResource( 2 )]
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
-[connection signal="ball_hit_brick" from="Ball" to="." method="_on_ball_hit_brick"]
-[connection signal="ball_out_of_bounds" from="Ball" to="." method="_on_ball_out_of_bounds"]

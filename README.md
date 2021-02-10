@@ -37,6 +37,9 @@ And many more original and unique improvements on the basic known game.
 - **root hierarchy**
 <img  src="Images/root_hierarchy.png" width="300" >
 
+- ** Design**
+<img  src="Images/Design_1.png" width="600" >
+
 - **level 1**
 <img  src="Images/game_init.png" width="600" >
 <img  src="Images/in_game_lvl_1.png" width="600" >

@@ -6,7 +6,7 @@ onready var bricksContainer = get_node("/root/Game/Bricks_Container")
 
 var total_active_bricks
 var bricks_data
-var brick_hit_lines_arr
+
 
 func _ready():
 	print("Bricks_Manager: _ready")

@@ -3,7 +3,7 @@ extends Node
 onready var view_height = get_viewport().get_visible_rect().size.y
 onready var powerupsContainer = get_node("/root/Game/Powerups_Container")
 
-var powerups_extra_data
+var powerups_data
 var current_level_powerups_data
 var current_active_powerups
 var falling_speed
@@ -30,8 +30,8 @@ func load_powerups_data():
 		printerr("\tError Line: ", result_json.error_line)
 		printerr("\tError String: ", result_json.error_string)
 		return null
-	powerups_extra_data = result_json.result
-	print(powerups_extra_data)
+	powerups_data = result_json.result
+	print(powerups_data)
 
 
 func _physics_process(delta):
@@ -86,13 +86,13 @@ func on_powerup_collected(instance_id):
 	powerup_instance.queue_free()
 	
 	# emit signal for the right handle of executing the powerup power ball_controller/paddle..etc.
-	var powerup_name = powerup_instance.name
-	var powerup_type_sperator_index = powerup_name.find("|")
-	var powerup_id = powerup_name.substr(0, powerup_type_sperator_index)
-	var powerup_data = powerups_extra_data.powerups_type_map[powerup_id]
-	print("emit " +  powerup_data.handler + "_power_up_collected")
-	SignalsManager.emit_signal(powerup_data.handler + "_power_up_collected", powerup_id, powerup_data)
-	SignalsManager.emit_signal("update_user_add_score", powerup_data.score)
+	var collected_powerup_name = powerup_instance.name
+	var powerup_type_sperator_index = collected_powerup_name.find("|")
+	var collected_powerup_id = collected_powerup_name.substr(0, powerup_type_sperator_index)
+	var collected_powerup_data = powerups_data.powerups_type_map[collected_powerup_id]
+	print("emit " +  collected_powerup_data.handler + "_power_up_collected")
+	SignalsManager.emit_signal(collected_powerup_data.handler + "_power_up_collected", collected_powerup_id, collected_powerup_data)
+	SignalsManager.emit_signal("update_user_add_score", collected_powerup_data.score)
 
 func release_all_powerups():
 	current_active_powerups = []

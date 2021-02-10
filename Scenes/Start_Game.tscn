@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Fonts/Roboto_Bold.tres" type="DynamicFont" id=1]
+
+[node name="Start_Game" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color( 0, 0, 0, 0.301961 )
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 444.0
+margin_top = 198.0
+margin_right = 584.0
+margin_bottom = 396.0
+custom_constants/separation = 12
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+margin_top = 38.0
+margin_right = 140.0
+margin_bottom = 63.0
+custom_fonts/font = ExtResource( 1 )
+text = "PLAY"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+margin_top = 75.0
+margin_right = 140.0
+margin_bottom = 95.0
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+margin_top = 107.0
+margin_right = 140.0
+margin_bottom = 127.0
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+margin_top = 139.0
+margin_right = 140.0
+margin_bottom = 159.0

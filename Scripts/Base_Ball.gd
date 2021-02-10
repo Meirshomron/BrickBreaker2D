@@ -3,7 +3,7 @@ extends Node2D
 onready var view_width = get_viewport().get_visible_rect().size.x
 onready var view_height = get_viewport().get_visible_rect().size.y
 
-export var speed = 300
+export var speed = 340
 
 var ball_radius
 var direction

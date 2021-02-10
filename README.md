@@ -46,6 +46,9 @@ And many more original and unique improvements on the basic known game.
 
 
 - **level 1**
+
+![](Images/play_gif.gif)
+
 <img  src="Images/game_init.png" width="600" >
 <img  src="Images/in_game_lvl_1.png" width="600" >
 
@@ -58,5 +61,3 @@ And many more original and unique improvements on the basic known game.
 - **level 4**
 <img  src="Images/in_game_lvl_4.png" width="600" >
 <img  src="Images/in_game_lvl_4_2.png" width="600" >
-
-![](Images/play_gif.gif)

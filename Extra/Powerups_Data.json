@@ -24,6 +24,13 @@
       "display_name": "multiple balls",
       "amount": 3,
       "score": 50
+    },
+    "bullets": {
+      "handler": "paddle",
+      "display_name": "shoot bullets",
+      "interval": 0.3,
+      "timeout": 5,
+      "score": 50
     }
   }
 }

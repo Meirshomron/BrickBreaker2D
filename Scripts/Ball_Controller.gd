@@ -39,8 +39,8 @@ func init_ball():
 	disable_balls()
 
 
-func set_to_paddle_pos(paddle_pos, paddle_half_width):
-	current_ball.set_to_paddle_pos(paddle_pos, paddle_half_width)
+func set_to_paddle_pos(paddle_pos, paddle_half_height):
+	current_ball.set_to_paddle_pos(paddle_pos, paddle_half_height)
 	aim_area.position = current_ball.position
 
 
@@ -82,9 +82,8 @@ func on_ball_hit_floor(ball_id):
 
 # ----------- Powerups ----------- #
 func on_powerup_collected(powerup_id, powerup_data):
-	print("Ball_controller: on_powerup_collected")
+	print("Ball_controller: on_powerup_collected " + str(powerup_id))
 	print(powerup_data)
-	print(powerup_id)
 	
 	match powerup_id:
 		"powerup_rocket":

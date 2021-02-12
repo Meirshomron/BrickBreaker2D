@@ -11,6 +11,7 @@ To run the project, download/clone and run from Godot's editor.
 - [x] Add lives.
 - [ ] Create walls inside the screen view.
 - [ ] Add more powerups.
+	- [X] shooting bullets.
 	- [ ] Ball speed.
 	- [ ] Paddle shooting.
 	- [ ] Big ball.
@@ -30,6 +31,7 @@ And many more original and unique improvements on the basic known game.
 - **powerup_rocket** - Ball rockets through bricks.
 - **extra_life** - User gets an extra life.
 - **multiple_balls** - adds 3 more balls of the current ball type.
+- **bullets** -  Paddle shoots bullets.
 
 
 ##  Images:

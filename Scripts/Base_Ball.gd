@@ -54,7 +54,7 @@ func _on_Ball_area_entered(area):
 		return
 	
 	if area.is_in_group("Brick"):
-		SignalsManager.emit_signal("ball_hit_brick", area.get_instance_id())
+		SignalsManager.emit_signal("player_hit_brick", area.get_instance_id())
 		on_hit_obj(area)
 	elif area.is_in_group("Stone"):
 		on_hit_obj(area)
@@ -106,8 +106,8 @@ func on_hit_paddle(area):
 		direction = Vector2(-sin(bounce), -cos(bounce))
 
 
-func set_to_paddle_pos(paddle_pos, paddle_half_width):
-	position = Vector2(paddle_pos.x, paddle_pos.y - (ball_radius + paddle_half_width))
+func set_to_paddle_pos(paddle_pos, paddle_half_height):
+	position = Vector2(paddle_pos.x, paddle_pos.y - (ball_radius + paddle_half_height))
 
 
 func start(start_rotation):

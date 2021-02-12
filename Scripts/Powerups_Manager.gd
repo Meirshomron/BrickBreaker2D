@@ -48,11 +48,11 @@ func init_level(level_powerups):
 	release_all_powerups()
 
 
-func on_ball_hit_brick(hit_id):
-#	print("Powerups_Manager: _on_ball_hit_brick")
+func on_player_hit_brick(hit_id):
+#	print("Powerups_Manager: _on_player_hit_brick")
 	var powerup_id = calculate_powerup()
 	if powerup_id:
-		print("powerup_id = " + str(powerup_id))
+		print("create powerup_id = " + str(powerup_id))
 		var brick_instance = instance_from_id(hit_id) 
 		var powerup_scene = load("res://Scenes/Powerups/" + powerup_id + ".tscn")
 		var powerup_instance = powerup_scene.instance()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Paddle_Controller.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Ball_Controller.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Textures/Background.png" type="Texture" id=5]
@@ -25,6 +25,6 @@ __meta__ = {
 
 [node name="BallController" parent="." instance=ExtResource( 3 )]
 
-[node name="Paddle" parent="." instance=ExtResource( 2 )]
+[node name="PaddleController" parent="." instance=ExtResource( 2 )]
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]

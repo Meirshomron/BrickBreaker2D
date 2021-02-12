@@ -8,9 +8,10 @@ bricks = [ [ 1, 2, 1, -1, 1, 2, 1 ], [ 1, 2, 1, -1, 1, 2, 1 ], [ 1, 2, 1, -1, 1,
 powerups = {
 "powerups_probabilities": 0.35,
 "probabilities": {
-"powerup_rocket": 0.3,
-"paddle_expand": 0.3,
+"powerup_rocket": 0.2,
+"paddle_expand": 0.2,
 "extra_life": 0.2,
-"multiple_balls": 0.2
+"multiple_balls": 0.2,
+"bullets" : 0.2
 }
 }

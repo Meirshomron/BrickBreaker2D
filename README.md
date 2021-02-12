@@ -40,7 +40,7 @@ And many more original and unique improvements on the basic known game.
 <img  src="Images/root_hierarchy.png" width="300" >
 
 - **Design**
-<img  src="Images/Design_1.png" width="800" >
+<img  src="Images/Project_Design.png" width="800" >
 
 <img  src="Images/Design_powerup_lifecycle.png" width="800" >
 

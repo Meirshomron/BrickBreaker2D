@@ -13,7 +13,7 @@ To run the project, download/clone and run from Godot's editor.
 - [ ] Add more powerups.
 	- [X] shooting bullets.
 	- [ ] Ball speed.
-	- [ ] Paddle shooting.
+	- [X] Paddle shooting.
 	- [ ] Big ball.
 	- [ ] Small paddle.
 	- [ ] Go through side walls.

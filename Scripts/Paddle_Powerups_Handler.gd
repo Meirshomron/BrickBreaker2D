@@ -29,7 +29,7 @@ func _ready():
 
 
 func on_powerup_collected(powerup_id, powerup_data):
-	print("Paddle_Controller: on_powerup_collected " + str(powerup_id))
+	print("Paddle_Powerups_Handler: on_powerup_collected " + str(powerup_id))
 	print(powerup_data)
 	
 	if current_powerup_id != null:
@@ -122,7 +122,7 @@ func remove_timer(timer):
 
 
 func clear():
-	print("Paddle_Controller: clear")
+	print("Paddle_Powerups_Handler: clear")
 	if current_powerup_id != null:
 		powerup_timout()
 	if pool:

@@ -10,7 +10,6 @@ signal update_user_add_score(score)
 
 signal player_hit_brick(hit_id)
 signal ball_hit_floor(ball_id)
-signal ball_out_of_bounds
 
 signal decrease_user_life
 signal increase_user_life
@@ -18,3 +17,5 @@ signal increase_user_life
 signal level_completed
 
 signal game_over
+signal start_level
+signal game_completed

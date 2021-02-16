@@ -32,7 +32,7 @@ func load_powerups_data():
 		return null
 	powerups_data = result_json.result
 	print(powerups_data)
-
+	file.close()
 
 func _physics_process(delta):
 	for powerup in current_active_powerups:

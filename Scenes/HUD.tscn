@@ -1,12 +1,40 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Fonts/Roboto_Bold.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Textures/hud_heartFull.png" type="Texture" id=2]
-[ext_resource path="res://Textures/resume.png" type="Texture" id=3]
-[ext_resource path="res://Textures/pause.png" type="Texture" id=4]
+[ext_resource path="res://Textures/HUD/hud_heartFull.png" type="Texture" id=2]
+[ext_resource path="res://Textures/HUD/resume.png" type="Texture" id=3]
+[ext_resource path="res://Textures/HUD/pause.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Pause.gd" type="Script" id=5]
+[ext_resource path="res://Textures/HUD/settings.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/Settings.gd" type="Script" id=7]
+[ext_resource path="res://Textures/HUD/close.png" type="Texture" id=8]
+[ext_resource path="res://Textures/HUD/start.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/Start_Level_UI.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/HUD.gd" type="Script" id=11]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+void fragment()
+{
+	vec4 uv = texture(TEXTURE, UV);
+	if (uv.a > 0.9)
+	{
+		COLOR.rgba = vec4(1)
+	}
+	else
+	{
+		COLOR.rgba = uv
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 
 [node name="HUD" type="Node2D"]
+script = ExtResource( 11 )
 
 [node name="Score" type="RichTextLabel" parent="."]
 margin_left = 12.0
@@ -47,8 +75,12 @@ texture = ExtResource( 2 )
 
 [node name="Pause" type="Node2D" parent="."]
 pause_mode = 2
+visible = false
 position = Vector2( 988, 8 )
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="pauseButton" type="TextureButton" parent="Pause"]
 margin_left = -40.0
@@ -74,7 +106,90 @@ texture_normal = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Start_Level_UI" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 10 )
+
+[node name="ColorRect" type="ColorRect" parent="Start_Level_UI"]
+margin_left = 320.0
+margin_top = 192.0
+margin_right = 736.0
+margin_bottom = 384.0
+color = Color( 0, 0, 0, 0.8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="TextureButton" parent="Start_Level_UI"]
+material = SubResource( 2 )
+margin_left = 448.0
+margin_top = 224.0
+margin_right = 981.0
+margin_bottom = 651.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Node2D" parent="."]
+pause_mode = 2
+visible = false
+script = ExtResource( 7 )
+
+[node name="settingsButton" type="TextureButton" parent="Settings"]
+margin_left = 912.0
+margin_top = -24.0
+margin_right = 1012.0
+margin_bottom = 76.0
+rect_scale = Vector2( 0.3, 0.3 )
+rect_pivot_offset = Vector2( 50, 50 )
+texture_normal = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings_UI" type="Node2D" parent="Settings"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Settings/Settings_UI"]
+margin_left = 320.0
+margin_top = 192.0
+margin_right = 736.0
+margin_bottom = 384.0
+color = Color( 0, 0, 0, 0.8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscore" type="RichTextLabel" parent="Settings/Settings_UI"]
+margin_left = 384.0
+margin_top = 256.0
+margin_right = 640.0
+margin_bottom = 320.0
+custom_fonts/normal_font = ExtResource( 1 )
+text = "gykmgykmgykm"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="closeButton" type="TextureButton" parent="Settings/Settings_UI"]
+material = SubResource( 2 )
+margin_left = 700.0
+margin_top = 200.0
+margin_right = 800.0
+margin_bottom = 300.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="button_down" from="Pause/pauseButton" to="Pause" method="_on_pauseButton_button_down"]
 [connection signal="button_up" from="Pause/pauseButton" to="Pause" method="_on_pauseButton_button_up"]
 [connection signal="button_down" from="Pause/resumeButton" to="Pause" method="_on_resumeButton_button_down"]
 [connection signal="button_up" from="Pause/resumeButton" to="Pause" method="_on_resumeButton_button_up"]
+[connection signal="button_up" from="Start_Level_UI/StartButton" to="Start_Level_UI" method="_on_StartButton_button_up"]
+[connection signal="button_down" from="Settings/settingsButton" to="Settings" method="_on_settingsButton_button_down"]
+[connection signal="pressed" from="Settings/Settings_UI/closeButton" to="Settings" method="_on_closeButton_pressed"]

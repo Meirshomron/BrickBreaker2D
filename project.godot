@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="BrickBreaker2D"
 run/main_scene="res://Scenes/Game.tscn"
-config/icon="res://icon.png"
+config/icon="res://Images/icon.png"
 
 [autoload]
 
@@ -35,8 +35,16 @@ UserProgressManager="*res://Scripts/User_Progress_Manager.gd"
 [display]
 
 window/size/resizable=false
+window/handheld/orientation="sensor_landscape"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=4096
+limits/debugger_stdout/max_messages_per_frame=100
+limits/debugger_stdout/max_errors_per_second=1000
+limits/debugger_stdout/max_warnings_per_second=1000
 
 [rendering]
 

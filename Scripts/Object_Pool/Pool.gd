@@ -37,12 +37,13 @@ func init():
 	# If scene has not been set, just return
 	if scene == null:
 		return
-
+	
 	for i in range(size):
 		var s = scene.instance()
 		s.set_name(prefix + "_" + str(i))
 		s.connect("killed", self, "_on_killed")
 		dead.push_back(s)
+	hide()
 
 func no_set_access(val):
 	return
@@ -70,15 +71,22 @@ func get_first_dead():
 	var ds = dead.size()
 	if ds > 0:
 		var o = dead[ds - 1]
-		if !o.dead: return null
-
+		
+		# If for some reason(bug) an alive object is in the dead list - remove it and get a different dead object.
+		if !o.dead: 
+			var n = o.get_name()
+			alive[n] = o
+			dead.remove(ds - 1)
+			return get_first_dead()
+		
 		var n = o.get_name()
 		alive[n] = o
-		dead.pop_back()
+		dead.remove(ds - 1)
 		o.dead = false
 		o.set_pause_mode(0)
 		return o
-
+	
+	# TODO: Expand the pool.
 	return null
 
 # Get the first alive object. Does not affect / change the object's dead value
@@ -128,7 +136,8 @@ func _on_killed(target):
 	alive.erase(name)
 
 	# Add the killed object to the dead pool, now available for use
-	dead.push_back(target)
+	if not dead.has(target):
+		dead.push_back(target)
 
 	target.set_pause_mode(1)
 

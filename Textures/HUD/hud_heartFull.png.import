@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stone.png-22ffee6b2bfc04dc22a3b61d0ddd974d.stex"
+path="res://.import/hud_heartFull.png-81457f0480db1cd1906034caa1d94a54.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/stone.png"
-dest_files=[ "res://.import/stone.png-22ffee6b2bfc04dc22a3b61d0ddd974d.stex" ]
+source_file="res://Textures/HUD/hud_heartFull.png"
+dest_files=[ "res://.import/hud_heartFull.png-81457f0480db1cd1906034caa1d94a54.stex" ]
 
 [params]
 

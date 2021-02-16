@@ -16,7 +16,7 @@ func _ready():
 	current_ball_res = load("res://Scenes/Balls/" + start_ball_type + ".tscn")
 	SignalsManager.connect("ball_power_up_collected", self, "on_powerup_collected")
 	SignalsManager.connect("ball_hit_floor", self, "on_ball_hit_floor")
-
+	aim_area.set_visible(false)
 
 func init():
 	print("Ball_Controller: init")
@@ -67,7 +67,7 @@ func start_ball():
 func on_ball_hit_floor(ball_id):
 		var num_of_balls = ballsContainer.get_child_count()
 		if num_of_balls == 1:
-			SignalsManager.emit_signal("ball_out_of_bounds")
+			SignalsManager.emit_signal("decrease_user_life")
 		else:
 			var ball_instance = instance_from_id(ball_id) 
 			var current_ball_id = current_ball.get_instance_id()
@@ -84,6 +84,10 @@ func on_ball_hit_floor(ball_id):
 func on_powerup_collected(powerup_id, powerup_data):
 	print("Ball_controller: on_powerup_collected " + str(powerup_id))
 	print(powerup_data)
+	
+	# edge case of collecting a powerup after reomiving the current ball and before creating the new ball. 
+	if not current_ball:
+		return
 	
 	match powerup_id:
 		"powerup_rocket":

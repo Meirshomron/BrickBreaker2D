@@ -31,7 +31,7 @@ func set_active(val):
 
 
 func get_active():
-	return is_active
+	return 
 
 
 func set_dead(val):
@@ -43,6 +43,9 @@ func get_dead():
 
 
 func _on_Bullet_area_entered(area):
+	if not is_active:
+		return
+	
 	if area.is_in_group("Brick"):
 		SignalsManager.emit_signal("player_hit_brick", area.get_instance_id())
 		kill()

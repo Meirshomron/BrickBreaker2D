@@ -56,13 +56,11 @@ func _on_Ball_area_entered(area):
 	if area.is_in_group("Brick"):
 		SignalsManager.emit_signal("player_hit_brick", area.get_instance_id())
 		on_hit_obj(area)
-	elif area.is_in_group("Stone"):
-		on_hit_obj(area)
 	elif area.is_in_group("Paddle"):
 		on_hit_paddle(area)
 
 
-# If we're hiting a stone/brick on its sides then flip the x direction, otherwise we're hitting the from the top/bottom and flip the y direction..
+# If we're hiting a brick on its sides then flip the x direction, otherwise we're hitting the from the top/bottom and flip the y direction..
 func on_hit_obj(area):
 	var hit_half_height = area.get_node("CollisionShape2D").shape.get_extents().y
 	var hit_half_width = area.get_node("CollisionShape2D").shape.get_extents().x

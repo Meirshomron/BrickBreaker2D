@@ -21,7 +21,6 @@ func _on_resumeButton_button_up():
 
 
 func _on_pauseButton_button_up():
-	print("up")
 	get_tree().paused = true
 	pauseBtn.set_visible(false)
 	resumeBtn.set_visible(true)
@@ -29,7 +28,6 @@ func _on_pauseButton_button_up():
 
 
 func _on_pauseButton_button_down():
-	print("down")
 	pauseBtn.set_scale(pressed_scale)
 
 

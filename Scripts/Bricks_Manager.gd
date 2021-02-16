@@ -14,7 +14,7 @@ func _ready():
 
 
 func init_level(level_bricks):
-	total_active_bricks = 0
+	total_active_bricks = {}
 	release_all_bricks()
 	create_bricks(level_bricks)
 
@@ -33,7 +33,7 @@ func load_bricks_data():
 		return null
 	bricks_data = result_json.result
 	print(bricks_data)
-
+	file.close()
 
 func create_bricks(level_bricks):
 	var brick_scenes = {}
@@ -71,7 +71,7 @@ func create_bricks(level_bricks):
 				brick_instance.position.x = column * (column_spacing + (brick_half_size.x * 2)) + brick_half_size.x
 				brick_instance.position.x += (view_width - (total_bricks_in_row * ( column_spacing + (brick_half_size.x * 2))) + column_spacing) / 2
 				brick_instance.position.y = row_initial_spacing + row * (row_spacing + (brick_half_size.y * 2)) + brick_half_size.y
-				total_active_bricks += 1
+				total_active_bricks[brick_instance] = true
 
 
 func release_all_bricks():
@@ -105,9 +105,9 @@ func on_player_hit_brick(hit_id):
 	hits_to_destroy -= 1
 	if hits_to_destroy == 0:
 		brick_instance.queue_free()
-		total_active_bricks -= 1
-		print("total_active_bricks = " + str(total_active_bricks))
-		if total_active_bricks <= 0:
+		total_active_bricks.erase(brick_instance)
+		print("total_active_bricks = " + str(total_active_bricks.size()))
+		if total_active_bricks.size() <= 0:
 			SignalsManager.emit_signal("level_completed")
 	else:
 		set_brick_hit(brick_instance, hits_to_destroy)

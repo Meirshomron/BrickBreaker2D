@@ -17,11 +17,11 @@ var is_movement_enabled
 
 func _ready():
 	is_init = false
-
+	hide()
 
 func set_start_pos():
 	# Initial position.
-	var offset_from_ground = 10
+	var offset_from_ground = 25
 	paddleUI.position.y = view_height - paddle_half_height - offset_from_ground
 	paddleUI.position.x = view_width / 2
 
@@ -29,9 +29,12 @@ func set_start_pos():
 func init():
 	is_init = true
 	is_movement_enabled = false
-	powerup_handler.clear()
+	clear()
 	set_start_pos()
-
+	# On devices we cant start with also aiming and moving the paddle.
+	if OS.get_name() == "Windows":
+		enable_paddle_movement()
+	show()
 
 func _input(event):
 	if is_init and is_movement_enabled:
@@ -41,7 +44,7 @@ func _input(event):
 
 
 func _physics_process(delta):
-	if not is_init:
+	if not is_init or not is_movement_enabled:
 		return
 		
 	# Move as long as the key/button is pressed, the longer pressed = the faster it moves.
@@ -74,3 +77,6 @@ func disable_paddle_movement():
 
 func enable_paddle_movement():
 	is_movement_enabled = true
+
+func clear():
+	powerup_handler.clear()

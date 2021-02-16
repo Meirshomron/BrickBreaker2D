@@ -95,7 +95,6 @@ func decrease_life():
 
 func on_player_hit_brick(hit_id):
 	if is_level_started and is_ball_released:
-		print("on_player_hit_brick hit_id = " + str(hit_id))
 		PowerupsManager.on_player_hit_brick(hit_id)
 		BricksManager.on_player_hit_brick(hit_id)
 
